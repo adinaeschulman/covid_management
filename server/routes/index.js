@@ -10,7 +10,9 @@ router.get('/', (request, response) => {
 
 const getEmployees = async ()=>{
     return await db.Employee.findAll({
-        attributes: ['last_name'], 
+        where: {
+            id: 4
+        }
     })
 }
 
@@ -22,14 +24,22 @@ router.get('/employees', async (request, response) => {
 })
 
 
-// // add employee
-// router.post('/employee', async (request, response) => {
-//     const body = request.body
+// add employee
+router.post('/employees', async (request, response) => {
+    const body = request.body
 
-//     response.json({
-//         info: await getEmployees()
-//     })
-// })
+    const first_name = body.first_name
+    const last_name = body.last_name
+
+    console.log('hello', body)
+    db.Employee.create({
+        first_name: first_name, 
+        last_name: last_name
+    })
+    
+    response.json({
+        info: 'hello there'})
+})
 
 
 // // get vaccinations
