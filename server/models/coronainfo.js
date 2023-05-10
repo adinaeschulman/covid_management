@@ -1,42 +1,41 @@
-//const { Employee } = require(".");
 const { Sequelize } = require('sequelize');
 const moment = require('moment');
 const db = require('../models');
 
 
-
-
 module.exports = (sequelize, Sequelize) => {
     const Corona_info = sequelize.define("coronainfo", {  
-      tz: {
+    tz: {
         type: Sequelize.INTEGER,
-       // foreignKey: true,
         allowNull: false,
-        
-        
-       
       },
-    //works bh allowes more than 4
+    
     vaccination_date: {
     type:Sequelize.DATEONLY,
     allowNull: true,
-   
-  },
-  //works bh
-  vaccination_manufacturer: {
+     },
+
+    vaccination_manufacturer: {
     type: Sequelize.STRING,
     allowNull: true,
-  },
+    validate: {
+      isIn: {
+        args: [['Pfizer', 'Moderna', 'Johnson & Johnson', 'Sinovac", "AstraZeneca',
+        'pfizer', 'moderna', 'johnson & johnson', 'sinovac', 'astrazeneca']],
+        msg: "Invalid manufacturer"
+      }
+    }
+    },
   
-  exposure_date: {
+    exposure_date: {
     type: Sequelize.DATEONLY,
     allowNull: true,
    
-  },
-  recovery_date: {
+    },
+    recovery_date: {
     type: Sequelize.DATEONLY,
-    allowNull: true,
-    validate: {
+     allowNull: true,
+     validate: {
       isAfterGettingsickdate: function (value) {
         if (value && this.exposure_date) {
           if (value < this.exposure_date) {
@@ -60,7 +59,7 @@ module.exports = (sequelize, Sequelize) => {
 
     });
   
-    Corona_info.associate = (models) => {
+     Corona_info.associate = (models) => {
       Corona_info.belongsTo(models.employee, {
         foreignKey: 'tz',
         onDelete: 'CASCADE',

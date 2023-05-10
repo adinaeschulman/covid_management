@@ -1,4 +1,3 @@
-//const { Covid } = require(".");
 const { Sequelize } = require('sequelize');
 
 module.exports = (sequelize, Sequelize) => {
@@ -8,14 +7,17 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         autoIncrement: true,
       },
+
       first_name: {
         type: Sequelize.STRING,
         allowNull: false
       }, 
+
       last_name: {
         type: Sequelize.STRING,
         allowNull: false,
       }, 
+      
       tz: {
         type: Sequelize.INTEGER(9),
         primaryKey: true,
@@ -24,6 +26,7 @@ module.exports = (sequelize, Sequelize) => {
           len: [9, 9]},
         allowNull: false,
       },
+
       address: {
         type: Sequelize.JSON,
         allowNull: false, fields: {
@@ -40,6 +43,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
           } }
       },
+
       dob: {
         type: Sequelize.DATEONLY,
         allowNull: false,
@@ -47,6 +51,7 @@ module.exports = (sequelize, Sequelize) => {
           isDate: true,
         }
       },
+
       landline:{
         type: Sequelize.INTEGER(8),
         validate: {
@@ -63,12 +68,6 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
 
       },
-      // image_path: {
-      //   type: Sequelize.STRING,
-      //   allowNull: true,
-      // }, 
-      
-       
       
       });
      

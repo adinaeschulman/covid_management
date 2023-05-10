@@ -9,7 +9,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     min: dbConfig.pool.min,
     acquire: dbConfig.pool.acquire,
     idle: dbConfig.pool.idle,
-   // logging: console.log, // or pass in a custom logger function
+   
   }
 });
 
@@ -22,7 +22,6 @@ db.sequelize = sequelize;
 
 db.employee = require("./employee.js")(sequelize, Sequelize);
 db.coronainfo = require("./coronainfo.js")(sequelize, Sequelize);
-
 db.employee.hasMany(db.coronainfo, {foreignKey: 'tz'})
 
 // (async () => { 
