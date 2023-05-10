@@ -5,21 +5,43 @@ const { where } = require('sequelize');
 const multer = require("multer");
 const path = require("path");
 const { QueryTypes } = require('sequelize');
+const { Op } = require('sequelize');
+const vaccination_wait_period=14;
+
+//help functions 
+
+function getDaysBetweenDates(time1, time2) {
+  const date1=new Date(time1);
+  const date2=new Date(time2);
+  const timeDiff = Math.abs(date1.getTime() - date2.getTime());
+  const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  console.log(diffDays);
+   return diffDays;
+}
+
+const get_coronainfo = async () => {
+  return await db.coronainfo.findAll({
+    
+  })
+}
+
+const getEmployees = async () => {
+  const res = db.employee.findAll({
+    attributes: { exclude: ['id', 'createdAt','updatedAt' ] },
+    include: [
+      {
+        model: db.coronainfo, 
+        attributes: { exclude: ['id','tz', 'createdAt','updatedAt' ] 
+                      }, // specify attributes to retrieve
+      }
+    ]
+  }) 
+
+  return res 
+} 
 
 
 
-//for pix
-const storage = multer.diskStorage({
-  destination: function (request, file, cb) {
-    cb(null, "public/images"); // Store images in the public/images directory
-  },
-  filename: function (request, file, cb) {
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + "-" + Date.now() + ext);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 router.get('/', (request, response) => {
   response.json({
@@ -27,17 +49,7 @@ router.get('/', (request, response) => {
   })
 })
 
-const getEmployees = async () => {
-  const res = db.employee.findAll({
-    include: [
-      {
-        model: db.coronainfo
-      }
-    ]
-  })
 
-  return res 
-}
 
 // get all employees
 router.get('/employees', async (request, response) => {
@@ -162,6 +174,13 @@ router.post('/coronainfos', async (request, response) => {
     if (corona_rows.length == 4 && (vaccination_date != null))
       throw ("already has 4 vaccines")
 
+     //ensures all vaccination dates are at least two weeks apart
+    for ( row of corona_rows) {
+      if (getDaysBetweenDates(row.vaccination_date,vaccination_date) < vaccination_wait_period) {
+      throw ('Patient must wait at least two weeks between vaccination');
+       } }
+
+
     const covid = await db.coronainfo.create({
 
       tz: tz,
@@ -187,16 +206,12 @@ router.post('/coronainfos', async (request, response) => {
   }
 });
 
-const getCovid = async () => {
-  return await db.coronainfo.findAll({
-    
-  })
-}
+
 
 // get all corona info
 router.get('/coronainfos', async (request, response) => {
   response.json({
-    info: await getCovid()
+    info: await get_coronainfo()
   })
 })
 
@@ -239,5 +254,26 @@ router.get('/coronainfos/:tz', async (request, response, next) => {
   }
  });
 
+
+ // get all the info of who was sick
+//  router.get('/exposed', async (request, response, next) => {
+//   try {
+//     const check = await db.coronainfo.findAll({
+//         where: { 
+//           exposure_date: { [Op.not]: null },
+//           exposure_date: getDaysBetweenDates(exposure_date, Date.n) // exclude rows where vaccination_date is null
+//         }
+      
+//     });
+
+//     if (check.length == 0) {
+//       response.status(500).json({ message: 'No patients have been sick with corona' });
+//     }
+
+//     response.json(check);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = router

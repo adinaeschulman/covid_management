@@ -24,7 +24,7 @@ db.employee = require("./employee.js")(sequelize, Sequelize);
 db.coronainfo = require("./coronainfo.js")(sequelize, Sequelize);
 db.employee.hasMany(db.coronainfo, {foreignKey: 'tz'})
 
-// (async () => { 
+// (async () => {  
 //   try {
 //     console.log('db_employee', db.employee)
 
