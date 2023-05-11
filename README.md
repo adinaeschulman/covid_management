@@ -31,7 +31,7 @@ Here are the endpoints that can be used to interact with the API:
 | `/employees`                 | POST   | Adds a new employee to the system                                                                 | ```{ "first_name": "riki", "last_name": "schulman", "tz": 115799562, "address": {"city": "bet shemesh", "street": "nachal tamar", "number": "8"}, "dob": "1997-01-20", "landline": 29910274, "mobile_phone": 587638128}``` |
 | `/coronainfos`              | GET    | Retrieves a list of all COVID-19 vaccinations for all employees in the hospital                  |            |
 | `/coronainfos/:tz`          | GET    | Retrieves the details of a single COVID-19 vaccination                                            | `tz`: The ID of the vaccination to retrieve, in the URL path<br>Example: `/coronainfos/123` |
-| `/coronainfos`| POST   | Adds a new COVID-19 vaccination for a specific employee                                           | ```json\n{\n  "date": "2022-05-10",\n  "type": "Moderna",\n  "dose": 2,\n  "employeeId": 123\n}\n``` |
+| `/coronainfos`| POST   | Adds a new COVID-19 vaccination for a specific employee                                           |```{  "tz": 328781786,"vaccination_date": "2022-09-11",\n  "vaccination_manufacturer": "pfizer", "exposure_date": "2022-11-11", "recovery_date": "2022-12-11"}``` |
 
 
 The client side of this project was built using React and Material UI.
