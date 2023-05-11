@@ -15,7 +15,6 @@ function getDaysBetweenDates(time1, time2) {
   const date2=new Date(time2);
   const timeDiff = Math.abs(date1.getTime() - date2.getTime());
   const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-  console.log(diffDays);
    return diffDays;
 }
 
@@ -244,7 +243,7 @@ router.get('/coronainfos/:tz', async (request, response, next) => {
       }
     });
 
-    if (employeeInfo.length == 0) {
+    if (employeeinfo.length == 0) {
       response.status(500).json({ message: 'employee with following tz not found' });
     }
 
@@ -254,26 +253,5 @@ router.get('/coronainfos/:tz', async (request, response, next) => {
   }
  });
 
-
- // get all the info of who was sick
-//  router.get('/exposed', async (request, response, next) => {
-//   try {
-//     const check = await db.coronainfo.findAll({
-//         where: { 
-//           exposure_date: { [Op.not]: null },
-//           exposure_date: getDaysBetweenDates(exposure_date, Date.n) // exclude rows where vaccination_date is null
-//         }
-      
-//     });
-
-//     if (check.length == 0) {
-//       response.status(500).json({ message: 'No patients have been sick with corona' });
-//     }
-
-//     response.json(check);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 module.exports = router

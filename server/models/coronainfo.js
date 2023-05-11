@@ -2,40 +2,38 @@ const { Sequelize } = require('sequelize');
 const moment = require('moment');
 const db = require('../models');
 
-
 module.exports = (sequelize, Sequelize) => {
     const Corona_info = sequelize.define("coronainfo", {  
-    tz: {
+     tz: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
     
     vaccination_date: {
-    type:Sequelize.DATEONLY,
-    allowNull: true,
-     },
+       type:Sequelize.DATEONLY,
+       allowNull: true,
+      },
 
     vaccination_manufacturer: {
-    type: Sequelize.STRING,
-    allowNull: true,
-    validate: {
-      isIn: {
+       type: Sequelize.STRING,
+       allowNull: true,
+       validate: {
+       isIn: {
         args: [['Pfizer', 'Moderna', 'Johnson & Johnson', 'Sinovac", "AstraZeneca',
         'pfizer', 'moderna', 'johnson & johnson', 'sinovac', 'astrazeneca']],
         msg: "Invalid manufacturer"
-      }
-    }
-    },
+      } }
+      },
   
     exposure_date: {
-    type: Sequelize.DATEONLY,
-    allowNull: true,
+      type: Sequelize.DATEONLY,
+      allowNull: true,
    
-    },
+      },
     recovery_date: {
-    type: Sequelize.DATEONLY,
-     allowNull: true,
-     validate: {
+      type: Sequelize.DATEONLY,
+      allowNull: true,
+      validate: {
       isAfterGettingsickdate: function (value) {
         if (value && this.exposure_date) {
           if (value < this.exposure_date) {
