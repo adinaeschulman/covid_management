@@ -23,7 +23,7 @@ export default function EmployeeTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 750, maxWidth: 800 }} aria-label="simple table">
+      <Table sx={{ minWidth: 750 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>TZ</TableCell>
@@ -42,12 +42,9 @@ export default function EmployeeTable() {
               <TableCell component="th" scope="row">
                 {row.tz}
               </TableCell>
-              <TableCell align="right">{row.tz}</TableCell>
               <TableCell align="right">{row.vaccination_date}</TableCell>
               <TableCell align="right">{row.vaccination_manufacturer}</TableCell>
-              <TableCell align="right">
-                {row.exposure_date}
-              </TableCell>
+              <TableCell align="right">{row.exposure_date}</TableCell>
               <TableCell align="right">
                 {row.recovery_date}
               </TableCell>

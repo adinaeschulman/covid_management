@@ -14,7 +14,7 @@ export default function TopBar(props) {
   };
 
   return (
-    <div style={{ padding: 12 }}>
+    <div style={{ padding: 12, textAlign:'left' }}>
       <Button onClick={openAddModal} variant="contained">
         Add Corona
       </Button>
