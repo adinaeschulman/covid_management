@@ -30,9 +30,9 @@ Here are the endpoints that can be used to interact with the API:
 | `/employees/:id`             | GET    | Retrieves the details of a single employee                                                       | `id`: The ID of the employee to retrieve, in the URL path<br>Example: `/employees/123` |
 | `/employees`                 | POST   | Adds a new employee to the system                                                                 | ```{ "first_name": "riki", "last_name": "schulman", "tz": 115799562, "address": {"city": "bet shemesh", "street": "nachal tamar", "number": "8"}, "dob": "1997-01-20", "landline": 29910274, "mobile_phone": 587638128}``` |
 | `/vaccinations`              | GET    | Retrieves a list of all COVID-19 vaccinations for all employees in the hospital                  |            |
-| `/vaccinations/:id`          | GET    | Retrieves the details of a single COVID-19 vaccination                                            | `id`: The ID of the vaccination to retrieve, in the URL path<br>Example: `/vaccinations/123` |
-| `/employees/:id/vaccinations`| GET    | Retrieves a list of all COVID-19 vaccinations for a specific employee                             | `id`: The ID of the employee to retrieve vaccinations for, in the URL path<br>Example: `/employees/123/vaccinations` |
-| `/employees/:id/vaccinations`| POST   | Adds a new COVID-19 vaccination for a specific employee                                           | ```json\n{\n  "date": "2022-05-10",\n  "type": "Moderna",\n  "dose": 2,\n  "employeeId": 123\n}\n``` |
+| `/vaccinations/:tz`          | GET    | Retrieves the details of a single COVID-19 vaccination                                            | `tz`: The ID of the vaccination to retrieve, in the URL path<br>Example: `/vaccinations/123` |
+| `/coronainfos`| GET    | Retrieves a list of all COVID-19 vaccinations for a specific employee                             | `id`: The ID of the employee to retrieve vaccinations for, in the URL path<br>Example: `/coronainfos` |
+| `/coronainfos`| POST   | Adds a new COVID-19 vaccination for a specific employee                                           | ```json\n{\n  "date": "2022-05-10",\n  "type": "Moderna",\n  "dose": 2,\n  "employeeId": 123\n}\n``` |
 
 
 The client side of this project was built using React and Material UI.
