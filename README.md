@@ -52,7 +52,12 @@ To install and run this project locally, please follow these steps:
 Once you have the client running, you can use the application to manage hospital employees and their COVID-19 information. The UI includes the following views:
 
 - **Employee List:** A list of all employees with their basic information displayed.
+- ![image](https://github.com/adinaeschulman/covid_management/assets/92116566/f60308b0-0844-4dd2-b15c-72790acf0d66)
+
 - **Employee Detail:** The full details of a selected employee, including their personal information and COVID-19 vaccination and exposure history.
+- 
 - **Add Employee:** A form for adding a new employee to the system.
-- **Add Vaccination:** A form for recording a new COVID-19 vaccination for a selected employee.
-- **Add Exposure:** A form for recording a new COVID-19 exposure for a selected employee.
+- ![image](https://github.com/adinaeschulman/covid_management/assets/92116566/d8189aed-4e1f-4a3c-9fc1-e819c96164b3)
+
+- **Add Corona Info:** A form for recording a new COVID-19 vaccination for a selected employee.
+- ![image](https://github.com/adinaeschulman/covid_management/assets/92116566/b8ec5bcb-ef06-4d8c-8bdd-6aeeb84554d6)
