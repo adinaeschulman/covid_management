@@ -8,7 +8,7 @@ This is a fullstack project that manages employees in a hospital, including thei
 - Record and view COVID-19 vaccination information for each employee
 - Record and view COVID-19 exposure information for each employee
 
-## Technologies Used
+## Server
 
 The server side of this project was built using Node.js with Express.js as the web framework. The database used is PostgreSQL and Sequelize was used as the ORM.
 
@@ -33,6 +33,8 @@ Here are the endpoints that can be used to interact with the API:
 | `/coronainfos/:tz`          | GET    | Retrieves the details of a single COVID-19 vaccination                                            | `tz`: The ID of the vaccination to retrieve, in the URL path<br>Example: `/coronainfos/123` |
 | `/coronainfos`| POST   | Adds a new COVID-19 vaccination for a specific employee                                           |```{  "tz": 328781786,"vaccination_date": "2022-09-11",\n  "vaccination_manufacturer": "pfizer", "exposure_date": "2022-11-11", "recovery_date": "2022-12-11"}``` |
 
+
+## Client
 
 The client side of this project was built using React and Material UI.
 
