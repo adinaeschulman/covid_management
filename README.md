@@ -18,9 +18,7 @@ To install this project, please follow these steps:
 
 1. Clone the repository onto your local machine
 2. Install the necessary dependencies by running `npm install`
-3. Create a `.env` file based on the `.env.example` file provided
-4. Run the database migrations by running `npm run migrate`
-5. Start the server by running `npm start`
+3. Start the server by running `npm start`
 
 ## API Endpoints
 
@@ -35,6 +33,27 @@ Here are the endpoints that can be used to interact with the API:
 | /employees/:id/vaccinations    | POST   | Add a new COVID-19 vaccination for an employee          |
 | /employees/:id/exposures       | GET    | Get all COVID-19 exposures for an employee              |
 | /employees/:id/exposures       | POST   | Add a new COVID-19 exposure for an employee             |
+
+The client side of this project was built using React and Material UI.
+
+## Installation
+
+To install and run this project locally, please follow these steps:
+
+1. Navigate into the client folder
+2. Install the necessary dependencies by running `npm install`
+3. Start the client by running `npm start`
+4. Open your web browser and navigate to `http://localhost:3005`
+
+## Usage
+
+Once you have the client running, you can use the application to manage hospital employees and their COVID-19 information. The UI includes the following views:
+
+- **Employee List:** A list of all employees with their basic information displayed.
+- **Employee Detail:** The full details of a selected employee, including their personal information and COVID-19 vaccination and exposure history.
+- **Add Employee:** A form for adding a new employee to the system.
+- **Add Vaccination:** A form for recording a new COVID-19 vaccination for a selected employee.
+- **Add Exposure:** A form for recording a new COVID-19 exposure for a selected employee.
 
 ## Contributing
 
